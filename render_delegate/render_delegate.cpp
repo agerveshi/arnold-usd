@@ -444,6 +444,13 @@ HdArnoldRenderDelegate::HdArnoldRenderDelegate(bool isBatch, const TfToken &cont
     for (const auto& o : _GetSupportedRenderSettings()) {
         _SetRenderSetting(o.first, o.second.defaultValue);
     }
+        
+    // disable auto tx
+    AiNodeSetBool(_options, "texture_auto_generate_tx", false);
+        
+    AiNodeSetBool(_options, "skip_license_check", true);
+    AiNodeSetBool(_options, "abort_on_error", false);
+
 
 #ifdef ARNOLD_MULTIPLE_RENDER_SESSIONS
     AiRenderSetHintStr(
